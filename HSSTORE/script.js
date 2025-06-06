@@ -361,3 +361,100 @@ if (document.getElementById('cadastroProdutoForm')) {
         this.reset();
     });
 }
+// ==== MOCK JOGOS ====
+const MOCK_JOGOS = [
+    {
+        id: 1,
+        plataforma: 'psn',
+        preco: 119,
+        nome: 'FIFA 24',
+        descricao: 'Jogo original, ativação digital para PSN.',
+        img: 'assets/jogos/fifa24.jpg'
+    },
+    {
+        id: 2,
+        plataforma: 'steam',
+        preco: 179,
+        nome: 'Elden Ring',
+        descricao: 'Key Steam global.',
+        img: 'assets/jogos/eldenring.jpg'
+    },
+    {
+        id: 3,
+        plataforma: 'xbox',
+        preco: 99,
+        nome: 'Minecraft',
+        descricao: 'Ativação via Xbox Live.',
+        img: 'assets/jogos/minecraft.jpg'
+    },
+    {
+        id: 4,
+        plataforma: 'pc',
+        preco: 39,
+        nome: 'Among Us',
+        descricao: 'Key para PC. Envio imediato.',
+        img: 'assets/jogos/amongus.jpg'
+    }
+];
+
+// ==== JOGOS LISTAGEM E FILTRO ====
+function renderJogosList(jogos) {
+    const container = document.getElementById('jogosListagem');
+    if (!container) return;
+    if (!jogos.length) {
+        container.innerHTML = `<p style="color:#ffb32b;font-weight:600;">Nenhum jogo encontrado.</p>`;
+        return;
+    }
+    container.innerHTML = jogos.map(jogo => `
+        <div class="card-produto animated-card" tabindex="0">
+            <img src="${jogo.img}" alt="${jogo.nome}">
+            <div class="produto-info">
+                <h3>${jogo.nome}</h3>
+                <p>${jogo.descricao}</p>
+                <span class="price">R$${jogo.preco.toFixed(2)}</span>
+                <button class="btn-secondary comprar-btn" data-id="${jogo.id}">Comprar</button>
+            </div>
+        </div>
+    `).join('');
+    setTimeout(() => {
+        document.querySelectorAll('.card-produto').forEach((el, i) => {
+            el.style.opacity = 0;
+            setTimeout(() => {
+                el.style.opacity = 1;
+                el.style.transform = 'scale(1.03)';
+                setTimeout(() => {
+                    el.style.transform = '';
+                }, 150);
+            }, 100 + i * 60);
+        });
+    }, 80);
+
+    container.querySelectorAll('.comprar-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            alert('Compra simulada! Em breve você poderá realizar compras reais.');
+        });
+    });
+}
+if (document.getElementById('jogosListagem')) {
+    renderJogosList(MOCK_JOGOS);
+
+    document.getElementById('filtroJogos').addEventListener('submit', function(e) {
+        e.preventDefault();
+        let plat = document.getElementById('plataformaJogo').value;
+        let preco = document.getElementById('precoJogo').value;
+        let busca = document.getElementById('buscaJogo').value.toLowerCase();
+        let filtradas = MOCK_JOGOS.filter(j => {
+            let ok = true;
+            if (plat && j.plataforma !== plat) ok = false;
+            if (preco) {
+                let [min, max] = preco === '301+' ? [301, Infinity] : preco.split('-').map(Number);
+                if (j.preco < min || j.preco > max) ok = false;
+            }
+            if (busca && !j.nome.toLowerCase().includes(busca)) ok = false;
+            return ok;
+        });
+        renderJogosList(filtradas);
+    });
+}
+
+// ...restante do script.js permanece igual (não duplicar funções, só adicionar esta parte para jogos)
