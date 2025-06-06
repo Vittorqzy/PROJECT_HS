@@ -46,7 +46,7 @@ const MOCK_GIFTCARDS = [
         titulo: 'Gift Card Xbox R$100',
         descricao: 'Receba seu código na hora por e-mail.',
         preco: 95,
-        img: 'assets/giftcard-xbox.jpg'
+        img: 'assets/giftcard-xbox.avif'
     },
     {
         id: 2,
@@ -55,7 +55,7 @@ const MOCK_GIFTCARDS = [
         titulo: 'Gift Card PSN R$50',
         descricao: 'Ideal para renovar sua Plus.',
         preco: 49,
-        img: 'assets/giftcard-psn.jpg'
+        img: 'assets/giftcard-psn.webp'
     },
     {
         id: 3,
@@ -64,7 +64,7 @@ const MOCK_GIFTCARDS = [
         titulo: 'Gift Card Steam R$60',
         descricao: 'Desbloqueie jogos e DLCs no Steam.',
         preco: 59,
-        img: 'assets/giftcard-steam.jpg'
+        img: 'assets/giftcard-steam.webp'
     },
     {
         id: 4,
@@ -73,7 +73,7 @@ const MOCK_GIFTCARDS = [
         titulo: 'Gift Card Google Play R$30',
         descricao: 'Use em apps, jogos e filmes no Android.',
         preco: 28,
-        img: 'assets/giftcard-googleplay.jpg'
+        img: 'assets/giftcard-googleplay.png'
     }
 ];
 
