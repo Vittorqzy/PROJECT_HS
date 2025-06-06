@@ -593,7 +593,7 @@ footer {
   .navbar {
     padding: 1rem 1rem;
   }
-  .contas-listagem, .giftcards-listagem {
+  .contas-listagem, .tradcards-listagem {
     grid-template-columns: repeat(auto-fit, minmax(210px,1fr));
   }
 }
